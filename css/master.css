@@ -7,6 +7,7 @@ table {
 td {
 	width: 150px;
 	height: 150px;
+	text-align: center;
 }
 .vertical {
 	border-left: 1px solid black;
@@ -17,8 +18,10 @@ td {
 	border-bottom: 1px solid black;
 }
 .circle {
-
+	font-size: 100px;
+	color: black;
 }
 .cross {
-
+	font-size: 100px;
+	color: red;
 }
