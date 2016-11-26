@@ -1,5 +1,17 @@
 h1 {
 	text-align: center;
+	margin: 0;
+}
+#playerTurnDisplay {
+	text-align: center;
+	width: 150px;
+	margin: 0px auto 20px auto;
+}
+.xTurn {
+	background: red;
+}
+.yTurn {
+	background: blue;
 }
 table {
 	margin: auto;
@@ -19,7 +31,7 @@ td {
 }
 .circle {
 	font-size: 100px;
-	color: black;
+	color: blue;
 }
 .cross {
 	font-size: 100px;

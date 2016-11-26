@@ -1,34 +1,50 @@
 var boxes = document.querySelectorAll("td");
+var player = document.querySelector("#player");
+var playerTurnDisplay = document.querySelector("#playerTurnDisplay");
 var isXTurn = true;
 
 function init(){
-	addClickLiseners(boxes);
+	addClickListeners(boxes);
 }
-
-function addClickLiseners(arr){
+function addClickListeners(arr){
 	for(var i = 0; i < arr.length; i++){
 		arr[i].addEventListener("click", function(){
-			if(isXTurn && isEmpty(this))
-				addCross(this);
-			else if(isEmpty(this))
-				addCircle(this);
-			isXTurn = !(isXTurn);
+			if(isEmpty(this)){
+				addObjectToBox(this);
+				isXTurn = !(isXTurn);
+				displayTurn();
+			}
 		});
 	}
 }
+// is the box empty [true] or does it have an X or O in it [false]
 function isEmpty(box){
 	if(box.textContent !== "X" && box.textContent !== "O")
 		return true;
 	else
 		return false;
 }
-function addCross(item){
-	item.classList.add("cross");
-	item.textContent = "X";
+// adds the Object "O" to the board
+function addCross(box){
+	box.classList.add("cross");
+	box.textContent = "X";
 }
-function addCircle(item){
-	item.classList.add("circle");
-	item.textContent = "O";
+// adds the Object "X" to the board
+function addCircle(box){
+	box.classList.add("circle");
+	box.textContent = "O";
+}
+// displays whos turn it is to the players
+function displayTurn(){
+	player.textContent = (isXTurn) ? "X" : "O";
+	playerTurnDisplay.classList.toggle("xTurn");
+	playerTurnDisplay.classList.toggle("yTurn");
+}
+function addObjectToBox(box){
+	if(isXTurn)
+		addCross(box);
+	else
+		addCircle(box);
 }
 
 init();
