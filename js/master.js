@@ -3,13 +3,15 @@ var isXTurn = true;
 
 for(var i = 0; i < boxes.length; i++){
 	boxes[i].addEventListener("click", function(){
-		if(isXTurn){
+		if(isXTurn && (this.textContent !== "X" && this.textContent !== "O") ){
 			this.classList.add("cross");
 			this.textContent = "X";
 		}
 		else{
-			this.classList.add("circle");
-			this.textContent = "O";
+			if(this.textContent !== "X" && this.textContent !== "O"){
+				this.classList.add("circle");
+				this.textContent = "O";
+			}
 		}
 		isXTurn = !(isXTurn);
 	});
