@@ -14,6 +14,7 @@ function addClickListeners(arr){
 				addObjectToBox(this);
 				isXTurn = !(isXTurn);
 				boxesLeftToClick--;
+				// checkWinner();
 				displayTurn();
 			}
 		});
@@ -44,10 +45,24 @@ function displayTurn(){
 		playerTurnDisplay.classList.toggle("yTurn");
 	}
 	else{
-		playerTurnDisplay.textContent = "Game Over";
+		playerTurnDisplay.textContent = "Draw";
 		playerTurnDisplay.classList.toggle(playerTurnDisplay.classList);
-		playerTurnDisplay.classList.add("gameOver")
+		playerTurnDisplay.classList.add("gameOver");
 	}
+}
+function checkWinner(){
+	// tl boxes[0]
+	// tm boxes[1]
+	// tr boxes[2]
+	// ml boxes[3]
+	// mm boxes[4]
+	// mr boxes[5]
+	// bl boxes[6]
+	// bm boxes[7]
+	// br boxes[8]
+
+	// I am kinda stumped right now, going to go to sleep and see if I can work it out
+	// subconciously!
 }
 function addObjectToBox(box){
 	if(isXTurn)
