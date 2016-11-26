@@ -2,6 +2,7 @@ var boxes = document.querySelectorAll("td");
 var player = document.querySelector("#player");
 var playerTurnDisplay = document.querySelector("#playerTurnDisplay");
 var isXTurn = true;
+var boxesLeftToClick = 9;
 
 function init(){
 	addClickListeners(boxes);
@@ -12,6 +13,7 @@ function addClickListeners(arr){
 			if(isEmpty(this)){
 				addObjectToBox(this);
 				isXTurn = !(isXTurn);
+				boxesLeftToClick--;
 				displayTurn();
 			}
 		});
@@ -36,9 +38,16 @@ function addCircle(box){
 }
 // displays whos turn it is to the players
 function displayTurn(){
-	player.textContent = (isXTurn) ? "X" : "O";
-	playerTurnDisplay.classList.toggle("xTurn");
-	playerTurnDisplay.classList.toggle("yTurn");
+	if(boxesLeftToClick > 0){
+		player.textContent = (isXTurn) ? "X" : "O";
+		playerTurnDisplay.classList.toggle("xTurn");
+		playerTurnDisplay.classList.toggle("yTurn");
+	}
+	else{
+		playerTurnDisplay.textContent = "Game Over";
+		playerTurnDisplay.classList.toggle(playerTurnDisplay.classList);
+		playerTurnDisplay.classList.add("gameOver")
+	}
 }
 function addObjectToBox(box){
 	if(isXTurn)

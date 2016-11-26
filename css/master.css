@@ -2,6 +2,10 @@ h1 {
 	text-align: center;
 	margin: 0;
 }
+.gameOver {
+	background: #14FF00;
+	border: 3px solid #EBD020;
+}
 #playerTurnDisplay {
 	text-align: center;
 	width: 150px;
