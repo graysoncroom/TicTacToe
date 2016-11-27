@@ -47,3 +47,9 @@ td {
 	--webkit-transition: all 0.3s;
 	--moz-transition: all 0.3s;
 }
+.crossOut {
+	text-decoration: line-through;
+	background: grey;
+	opacity: 0.4;
+	color: gold;
+}

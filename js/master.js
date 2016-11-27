@@ -4,19 +4,19 @@ var player = document.querySelector("#player");
 var playerTurnDisplay = document.querySelector("#playerTurnDisplay");
 var isXTurn = true;
 var boxesLeftToClick = 9;
-
+var gameOver = false;
 function init(){
 	addClickListeners(boxes);
 }
 function addClickListeners(arr){
 	for(var i = 0; i < arr.length; i++){
 		arr[i].addEventListener("click", function(){
-			if(isEmpty(this)){
+			if(isEmpty(this) && gameOver === false){
 				addObjectToBox(this);
 				isXTurn = !(isXTurn);
 				boxesLeftToClick--;
 				displayTurn();
-				checkWinner();
+				checkWinner(arr);
 			}
 		});
 	}
@@ -51,47 +51,47 @@ function displayTurn(){
 		playerTurnDisplay.classList.add("gameOver");
 	}
 }
-function setWinnerDisplay(){
+function setWinnerDisplay(box, orientation){
 	playerTurnDisplay.classList.remove("xTurn");
 	playerTurnDisplay.classList.remove("yTurn");
 	playerTurnDisplay.classList.add("gameOver");
-	winner = true;
+	playerTurnDisplay.textContent = box.textContent + " wins " + orientation;
+	gameOver = true;
 }
-function checkWinner(){
-	if(boxes[0].textContent === boxes[1].textContent && boxes[0].textContent === boxes[2].textContent && isEmpty(boxes[0]) === false){
-		playerTurnDisplay.textContent = boxes[0].textContent + " wins horizontally";
-		setWinnerDisplay();
-	}
-	else if(boxes[3].textContent === boxes[4].textContent && boxes[3].textContent === boxes[5].textContent && isEmpty(boxes[3]) === false){
-		playerTurnDisplay.textContent = boxes[3].textContent + " wins horizontally";
-		setWinnerDisplay();
-	}
-	else if(boxes[6].textContent === boxes[7].textContent && boxes[6].textContent === boxes[8].textContent && isEmpty(boxes[6]) === false){
-		playerTurnDisplay.textContent = boxes[6].textContent + " wins horizontally";
-		setWinnerDisplay();
-	}
-	//vertical wins
-	else if(boxes[0].textContent === boxes[3].textContent && boxes[0].textContent === boxes[6].textContent && isEmpty(boxes[0]) === false){
-		playerTurnDisplay.textContent = boxes[0].textContent + " wins vertically";
-		setWinnerDisplay();
-	}
-	else if(boxes[1].textContent === boxes[4].textContent && boxes[1].textContent === boxes[7].textContent && isEmpty(boxes[1]) === false){
-		playerTurnDisplay.textContent = boxes[1].textContent + " wins vertically";
-		setWinnerDisplay();
-	}
-	else if(boxes[2].textContent === boxes[5].textContent && boxes[2].textContent === boxes[8].textContent && isEmpty(boxes[2]) === false){
-		playerTurnDisplay.textContent = boxes[2].textContent + " wins vertically";
-		setWinnerDisplay();
-	}
-	//diagonal wins
-	else if(boxes[0].textContent === boxes[4].textContent && boxes[0].textContent === boxes[8].textContent && isEmpty(boxes[0]) === false){
-		playerTurnDisplay.textContent = boxes[0].textContent + " wins diagonally";
-		setWinnerDisplay();
-	}
-	else if(boxes[2].textContent === boxes[4].textContent && boxes[2].textContent === boxes[6].textContent && isEmpty(boxes[2]) === false){
-		playerTurnDisplay.textContent = boxes[2].textContent + " wins diagonally";
-		setWinnerDisplay();
-	}
+function crossOut(box1,box2,box3){
+	box1.classList.add("crossOut");
+	box2.classList.add("crossOut");
+	box3.classList.add("crossOut");
+}
+function win(box1,box2,box3,orientation){
+	setWinnerDisplay(box1,orientation);
+	crossOut(box1,box2,box3);
+}
+// returns true if the boxes are all X's or O's false if they are empty or not the same
+function isTheSame(box1,box2,box3){
+	if(box1.textContent === box2.textContent && box1.textContent === box3.textContent
+	&& isEmpty(box1) === false) return true;
+	else
+		return false;
+}
+// checks an array of 9 elements to see if their textContent is the same
+function checkWinner(arr){
+	if(isTheSame(arr[0], arr[1], arr[2]))
+		win(arr[0], arr[1], arr[2],"horizontally");
+	else if(isTheSame(arr[3], arr[4], arr[5]))
+		win(arr[3], arr[4], arr[5], "horizontally");
+	else if(isTheSame(arr[6], arr[7], arr[8]))
+		win(arr[6], arr[7], arr[8], "horizontally");
+	else if(isTheSame(arr[0], arr[3], arr[6]))
+		win(arr[0],arr[3],arr[6], "vertically");
+	else if(isTheSame(arr[1], arr[4], arr[7]))
+		win(arr[1], arr[4], arr[7], "vertically");
+	else if(isTheSame(arr[2], arr[5], arr[8]))
+		win(arr[2], arr[5], arr[8], "vertically");
+	else if(isTheSame(arr[0], arr[4], arr[8]))
+		win(arr[0], arr[4], arr[8], "diagonally");
+	else if(isTheSame(arr[2], arr[4], arr[6]))
+		win(arr[2], arr[4], arr[6], "diagonally");
 }
 function addObjectToBox(box){
 	if(isXTurn)
