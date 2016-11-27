@@ -15,8 +15,8 @@ function addClickListeners(arr){
 				addObjectToBox(this);
 				isXTurn = !(isXTurn);
 				boxesLeftToClick--;
-				// checkWinner();
 				displayTurn();
+				checkWinner();
 			}
 		});
 	}
@@ -46,53 +46,52 @@ function displayTurn(){
 		playerTurnDisplay.classList.toggle("yTurn");
 	}
 	else{
-		//horizontal wins
-		if(boxes[0].textContent === boxes[1].textContent && boxes[0].textContent === boxes[2].textContent){
-			alert(boxes[0].textContent + " wins horizontally");
-		}
-		else if(boxes[3].textContent === boxes[4].textContent && boxes[3].textContent === boxes[5].textContent){
-			alert(boxes[3].textContent + " wins horizontally");
-		}
-		else if(boxes[6].textContent === boxes[7].textContent && boxes[6].textContent === boxes[8].textContent){
-			alert(boxes[6].textContent + " wins horizontally");
-		}
-		//vertical wins
-		else if(boxes[0].textContent === boxes[3].textContent && boxes[0].textContent === boxes[6].textContent){
-			alert(boxes[0].textContent + " wins vertically");
-		}
-		else if(boxes[1].textContent === boxes[4].textContent && boxes[1].textContent === boxes[7].textContent){
-			alert(boxes[1].textContent + " wins vertically");
-		}
-		else if(boxes[2].textContent === boxes[5].textContent && boxes[2].textContent === boxes[8].textContent){
-			alert(boxes[2].textContent + " wins vertically");
-		}
-		//diagonal wins
-		else if(boxes[0].textContent === boxes[4].textContent && boxes[0].textContent === boxes[8].textContent){
-			alert(boxes[2].textContent + " wins diagonally");
-		}
-		else if(boxes[2].textContent === boxes[4].textContent && boxes[2].textContent === boxes[6].textContent){
-			alert(boxes[2].textContent + " wins diagonally");
-		}
-		else{
-			playerTurnDisplay.textContent = "Draw";
-			playerTurnDisplay.classList.toggle(playerTurnDisplay.classList);
-			playerTurnDisplay.classList.add("gameOver");
-		}
+		playerTurnDisplay.textContent = "Draw";
+		playerTurnDisplay.classList.toggle(playerTurnDisplay.classList);
+		playerTurnDisplay.classList.add("gameOver");
 	}
 }
+function setWinnerDisplay(){
+	playerTurnDisplay.classList.remove("xTurn");
+	playerTurnDisplay.classList.remove("yTurn");
+	playerTurnDisplay.classList.add("gameOver");
+	winner = true;
+}
 function checkWinner(){
-	// tl boxes[0]
-	// tm boxes[1]
-	// tr boxes[2]
-	// ml boxes[3]
-	// mm boxes[4]
-	// mr boxes[5]
-	// bl boxes[6]
-	// bm boxes[7]
-	// br boxes[8]
-
-	// I am kinda stumped right now, going to go to sleep and see if I can work it out
-	// subconciously!
+	if(boxes[0].textContent === boxes[1].textContent && boxes[0].textContent === boxes[2].textContent && isEmpty(boxes[0]) === false){
+		playerTurnDisplay.textContent = boxes[0].textContent + " wins horizontally";
+		setWinnerDisplay();
+	}
+	else if(boxes[3].textContent === boxes[4].textContent && boxes[3].textContent === boxes[5].textContent && isEmpty(boxes[3]) === false){
+		playerTurnDisplay.textContent = boxes[3].textContent + " wins horizontally";
+		setWinnerDisplay();
+	}
+	else if(boxes[6].textContent === boxes[7].textContent && boxes[6].textContent === boxes[8].textContent && isEmpty(boxes[6]) === false){
+		playerTurnDisplay.textContent = boxes[6].textContent + " wins horizontally";
+		setWinnerDisplay();
+	}
+	//vertical wins
+	else if(boxes[0].textContent === boxes[3].textContent && boxes[0].textContent === boxes[6].textContent && isEmpty(boxes[0]) === false){
+		playerTurnDisplay.textContent = boxes[0].textContent + " wins vertically";
+		setWinnerDisplay();
+	}
+	else if(boxes[1].textContent === boxes[4].textContent && boxes[1].textContent === boxes[7].textContent && isEmpty(boxes[1]) === false){
+		playerTurnDisplay.textContent = boxes[1].textContent + " wins vertically";
+		setWinnerDisplay();
+	}
+	else if(boxes[2].textContent === boxes[5].textContent && boxes[2].textContent === boxes[8].textContent && isEmpty(boxes[2]) === false){
+		playerTurnDisplay.textContent = boxes[2].textContent + " wins vertically";
+		setWinnerDisplay();
+	}
+	//diagonal wins
+	else if(boxes[0].textContent === boxes[4].textContent && boxes[0].textContent === boxes[8].textContent && isEmpty(boxes[0]) === false){
+		playerTurnDisplay.textContent = boxes[0].textContent + " wins diagonally";
+		setWinnerDisplay();
+	}
+	else if(boxes[2].textContent === boxes[4].textContent && boxes[2].textContent === boxes[6].textContent && isEmpty(boxes[2]) === false){
+		playerTurnDisplay.textContent = boxes[2].textContent + " wins diagonally";
+		setWinnerDisplay();
+	}
 }
 function addObjectToBox(box){
 	if(isXTurn)
