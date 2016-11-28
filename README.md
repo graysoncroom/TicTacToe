@@ -7,7 +7,6 @@ Anything you would like to see on the app, let me know in the issues tab.
 
 Next on the list to implement!
 <ol>
-<li>Add a 'checker' to see if someone wins</li>
 <li>Top bar with "new game" button</li>
 <li>Player able to pick if X's or O's go first (select starting Object from top bar menu)</li>
 <li>FIGHT THE CPU! (cpu will always have to win)</li>
