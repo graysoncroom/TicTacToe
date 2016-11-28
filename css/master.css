@@ -50,9 +50,9 @@ td {
 	--moz-transition: all 0.1s;
 }
 .crossOut {
-	background: #B1B1B1;
-	color: gold;
-	transition: all 1s;
-	--webkit-transition: all 1s;
-	--moz-transition: all 1s;
+	background: gold;
+	color: black;
+	transition: all 0.4s;
+	--webkit-transition: all 0.4s;
+	--moz-transition: all 0.4s;
 }
