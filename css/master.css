@@ -4,25 +4,27 @@ h1 {
 }
 .gameOver {
 	background: #14FF00;
-	border: 3px solid #EBD020;
+	border: 3px solid #14FF00;
 }
 #playerTurnDisplay {
 	text-align: center;
-	width: 150px;
+	width: 205px;
 	margin: 0px auto 20px auto;
 }
 .xTurn {
 	background: red;
+	border: 3px solid red;
 }
 .yTurn {
 	background: blue;
+	border: 3px solid blue;
 }
 table {
 	margin: auto;
 }
 td {
-	width: 150px;
-	height: 150px;
+	width: 205px;
+	height: 205px;
 	text-align: center;
 }
 .vertical {
@@ -34,22 +36,23 @@ td {
 	border-bottom: 1px solid black;
 }
 .circle {
-	font-size: 100px;
+	font-size: 190px;
 	color: blue;
-	transition: all 0.3s;
-	--webkit-transition: all 0.3s;
-	--moz-transition: all 0.3s;
+	transition: all 0.1s;
+	--webkit-transition: all 0.1s;
+	--moz-transition: all 0.1s;
 }
 .cross {
-	font-size: 100px;
+	font-size: 190px;
 	color: red;
-	transition: all 0.3s;
-	--webkit-transition: all 0.3s;
-	--moz-transition: all 0.3s;
+	transition: all 0.1s;
+	--webkit-transition: all 0.1s;
+	--moz-transition: all 0.1s;
 }
 .crossOut {
-	text-decoration: line-through;
-	background: grey;
-	opacity: 0.4;
+	background: #B1B1B1;
 	color: gold;
+	transition: all 1s;
+	--webkit-transition: all 1s;
+	--moz-transition: all 1s;
 }
