@@ -36,14 +36,14 @@ td {
 	border-bottom: 1px solid black;
 }
 .circle {
-	font-size: 160px;
+	font-size: 150px;
 	color: blue;
 	transition: all 0.1s;
 	--webkit-transition: all 0.1s;
 	--moz-transition: all 0.1s;
 }
 .cross {
-	font-size: 160px;
+	font-size: 150px;
 	color: red;
 	transition: all 0.1s;
 	--webkit-transition: all 0.1s;
