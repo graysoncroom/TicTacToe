@@ -5,6 +5,7 @@ var playerTurnDisplay = document.querySelector("#playerTurnDisplay");
 var isXTurn = true;
 var boxesLeftToClick = 9;
 var gameOver = false;
+
 function init(){
 	addClickListeners(boxes);
 }
@@ -51,6 +52,7 @@ function displayTurn(){
 		playerTurnDisplay.classList.add("gameOver");
 	}
 }
+// if someone wins get rid of the background color and display the text of whoever won
 function setWinnerDisplay(box, orientation){
 	playerTurnDisplay.classList.remove("xTurn");
 	playerTurnDisplay.classList.remove("yTurn");
@@ -58,11 +60,13 @@ function setWinnerDisplay(box, orientation){
 	playerTurnDisplay.textContent = box.textContent + " wins " + orientation;
 	gameOver = true;
 }
+// adds the "line" through the winning boxes
 function crossOut(box1,box2,box3){
 	box1.classList.add("crossOut");
 	box2.classList.add("crossOut");
 	box3.classList.add("crossOut");
 }
+// all the things that need to happend when a player wins will happen if you call this function
 function win(box1,box2,box3,orientation){
 	setWinnerDisplay(box1,orientation);
 	crossOut(box1,box2,box3);
