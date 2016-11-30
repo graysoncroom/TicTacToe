@@ -2,6 +2,7 @@ var boxes = document.querySelectorAll("td");
 var boxtext = document.querySelectorAll("td span");
 var player = document.querySelector("#player");
 var playerTurnDisplay = document.querySelector("#playerTurnDisplay");
+var resetButton = document.querySelector("#resetButton");
 var isXTurn = true;
 var boxesLeftToClick = 9;
 var gameOver = false;
@@ -20,6 +21,9 @@ function addClickListeners(arr){
 				checkWinner(arr);
 			}
 		});
+		resetButton.addEventListener("click", function(){
+			reset();
+		})
 	}
 }
 // is the box empty [true] or does it have an X or O in it [false]
@@ -77,6 +81,17 @@ function isTheSame(box1,box2,box3){
 	&& isEmpty(box1) === false) return true;
 	else
 		return false;
+}
+function reset(){
+	for(var i = 0; i < boxes.length; i++){
+		boxes[i].textContent = "";
+		isXTurn = true;
+		boxes[i].classList.remove("crossOut");
+		boxes[i].classList.remove("gameOver");
+	}
+	gameOver = false;
+	if(isXTurn) playerTurnDisplay.classList.add("xTurn");
+	boxesLeftToClick = 9;
 }
 // checks an array of 9 elements to see if their textContent is the same
 function checkWinner(arr){

@@ -6,7 +6,22 @@ h1 {
 	background: #14FF00;
 	border: 3px solid #14FF00;
 }
+#nav-bar {
+	margin: 0 auto;
+	width: 430px;
+}
+button {
+	margin: 0px auto 3px auto;
+	display: inline-block;
+	width: 211px;
+	border: 2px dotted grey;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 500;
+	background: gold;
+}
 #playerTurnDisplay {
+	display: inline-block;
 	text-align: center;
 	width: 205px;
 	margin: 0px auto 20px auto;
