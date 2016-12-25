@@ -13,7 +13,7 @@ function init(){
 function addClickListeners(arr){
 	for(var i = 0; i < arr.length; i++){
 		arr[i].addEventListener("click", function(){
-			if(isEmpty(this) && gameOver === false){
+			if(isEmpty(this) && !gameOver){
 				addObjectToBox(this);
 				isXTurn = !(isXTurn);
 				boxesLeftToClick--;
