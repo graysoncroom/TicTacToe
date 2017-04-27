@@ -1,11 +1,12 @@
-var boxes = document.querySelectorAll("td");
-var boxtext = document.querySelectorAll("td span");
-var player = document.querySelector("#player");
-var playerTurnDisplay = document.querySelector("#playerTurnDisplay");
-var resetButton = document.querySelector("#resetButton");
-var isXTurn = true;
-var boxesLeftToClick = 9;
-var gameOver = false;
+(function(){
+var boxes = document.querySelectorAll("td"),
+	boxtext = document.querySelectorAll("td span"),
+	player = document.querySelector("#player"),
+	playerTurnDisplay = document.querySelector("#playerTurnDisplay"),
+	resetButton = document.querySelector("#resetButton"),
+	isXTurn = true,
+	boxesLeftToClick = 9,
+	gameOver = false;
 
 function init(){
 	addClickListeners(boxes);
@@ -21,10 +22,10 @@ function addClickListeners(arr){
 				checkWinner(arr);
 			}
 		});
-		resetButton.addEventListener("click", function(){
-			reset();
-		})
 	}
+	resetButton.addEventListener("click", function(){
+		reset();
+	});
 }
 // is the box empty [true] or does it have an X or O in it [false]
 function isEmpty(box){
@@ -77,20 +78,17 @@ function win(box1,box2,box3,orientation){
 }
 // returns true if the boxes are all X's or O's false if they are empty or not the same
 function isTheSame(box1,box2,box3){
-	if(box1.textContent === box2.textContent && box1.textContent === box3.textContent
-	&& isEmpty(box1) === false) return true;
-	else
-		return false;
+	return (box1.textContent === box2.textContent === box3.textContent && !isEmpty(box1))
 }
 function reset(){
 	for(var i = 0; i < boxes.length; i++){
 		boxes[i].textContent = "";
-		isXTurn = true;
 		boxes[i].classList.remove("crossOut");
 		boxes[i].classList.remove("gameOver");
 	}
+	isXTurn = true;
 	gameOver = false;
-	if(isXTurn) playerTurnDisplay.classList.add("xTurn");
+	playerTurnDisplay.classList.add("xTurn");
 	boxesLeftToClick = 9;
 }
 // checks an array of 9 elements to see if their textContent is the same
@@ -120,3 +118,4 @@ function addObjectToBox(box){
 }
 
 init();
+}());
